@@ -1,0 +1,46 @@
+body {
+  text-align: center;
+}
+
+h1 {
+  margin: 0 auto;
+  font-size: 48px;
+  margin: 2%;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+  height: 100px;
+  width: 670px;
+}
+
+.square {
+  border: 1px solid black;
+  height: 75px;
+  user-select: none;
+  width: 75px;
+  margin-bottom: 0;
+  line-height: 70;
+}
+
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: white;
+}
