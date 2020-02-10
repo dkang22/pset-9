@@ -1,0 +1,105 @@
+* {
+  font-family: 'Acme', sans-serif;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+body {
+  text-align: center;
+}
+
+h1 {
+  margin: 0 auto;
+  font-size: 48px;
+  margin: 2%;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+h2 {
+  font-size: 33px;
+  font-weight: lighter;
+  margin: 1%;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+  height: 456px;
+  width: 456px;
+}
+
+.square {
+  border: 1px solid white;
+  height: 150px;
+  user-select: none;
+  width: 150px;
+  font-size: 96px;
+  line-height: 150px;
+}
+
+.square:hover {
+  background-color: #C3C3C3;
+  cursor: pointer;
+}
+
+.scorebox {
+  border: 1px solid white;
+  height: 90px;
+  user-select: none;
+  width: 225px;
+}
+
+#reset-button {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  font-size: 21px;
+  line-height: 55px;
+  margin: 1%;
+  text-align: center;
+  width: 456px;
+  margin-bottom: 0;
+}
+
+#reset-button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+#score-keeper {
+  padding-top: 15px;
+}
+
+#score-title {
+  background-color: black;
+  color: white;
+  font-size: 30px;
+}
