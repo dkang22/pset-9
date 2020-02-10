@@ -1,10 +1,13 @@
 Problem Set 9
+
 We're going to build on our Tic-Tac-Toe app from Problem Set 8. In this problem set, we'll be building out an entire suite of games. We already have Tic-Tac-Toe, and we'll be adding two more!
 
 Getting Started
+
 To get started, create a GitHub repository to store your code. When you're finished, clone my skeleton to get all of the starter code and instructions. Setup a remote to push your code to your repository instead of mine.
 
 Setup
+
 Login to your GitHub account and create a new repository named pset-9.
 In the terminal, navigate to your APCSP directory on the Desktop.
 $ cd ~/Desktop/APCSP
@@ -19,6 +22,7 @@ $ git remote add origin git@github.com:YOUR-USERNAME/pset-9.git
 You're all set. You've got a clean working directory and you're ready to start coding.
 
 Requirements
+
 Before getting into the specifics of each game, let's talk a little about what your application shoud look like as a whole. You'll need to choose three of the following five games to include in your suite (one of which you've already done).
 
 These games are roughly ordered by difficulty, from easiest to most challenging. While it's tempting to pick the easiest, the difficulty level of your game suite is factored into the harshness with which you'll be graded. Those with more experience are expected to operate on the more challenging end of the spectrum.
@@ -40,13 +44,14 @@ Your home page should titled index.html, and should present users with a listing
 When I say consistency, I am specifically referring to fonts, color schemes, and layouts. If you're unsure if your design is consistent, please solicit feedback before traveling too far down a dead end.
 
 Tic-Tac-Toe
+
 We've already completed Tic-Tac-Toe during the last problem set. For the sake of thoroughness, I'll include the rules and minimum requirements.
 
 The game is played on a 3-by-3 grid of squares.
 Players take turns marking the squares with either an X or an O.
 A player wins if he or she marks three consecutive squares: vertically, horizontally, or diagonally.
 If all nine squares are marked without either player winning, the game ends in a tie.
-Remember, these are just the minimum requirements. My suggestion is that you spare no expense in making this game your own. Part of the grading process will be how desirable your game is to your peers. What makes a game desirable? User interface and user experience (affectionately known in the world of software developemnt as UI and UX).
+Remember, these are just the minimum requirements. My suggestion is that you spare no expense in making this game your own. Part of the grading process will be how desirable your game is to your peers. What makes a game desirable? User interface and user experience (affectionately known in the world of software development as UI and UX).
 
 The user interface is how the application looks. This comes down to your structure and style. The user experience is more about the features your game supports, how well they are integrated, and how intuitive the game play is.
 
@@ -55,15 +60,17 @@ Looking for a little inspiration? Here are some cool features you might consider
 Keep score. Let players play multiple games, and keep track of their wins and losses.
 Allow players to choose who will go first. Or, alternatively, let the loser of the previous game go first (or randomize this decision if the previous game ended in a tie).
 Implement an AI so that players can play against the computer. It would be really cool if players could choose a difficulty level (i.e., easy, medium, hard, expert), and your AI would play accordingly.
+
 Connect Four
+
 Connect Four is essentially Tic-Tac-Toe on a larger scale. Here are the rules and minimum requirements.
 
 The game is played on a 7-by-6 grid of cells.
 Players take turns placing pieces (red or yellow) on the board.
 When a player places a piece on the board, he or she does so by choosing a column. The piece is then placed in the first available cell in that column (starting from the bottom of the board).
-A player wins if he or she places four consecutive pieces: vertically, horizotnally, or diagonally.
+A player wins if he or she places four consecutive pieces: vertically, horizontally, or diagonally.
 If the board is entirely filled without either player winning, the game ends in a tie.
-Remember, these are just the minimum requirements. My suggestion is that you spare no expense in making this game your own. Part of the grading process will be how desirable your game is to your peers. What makes a game desirable? User interface and user experience (affectionately known in the world of software developemnt as UI and UX).
+Remember, these are just the minimum requirements. My suggestion is that you spare no expense in making this game your own. Part of the grading process will be how desirable your game is to your peers. What makes a game desirable? User interface and user experience (affectionately known in the world of software development as UI and UX).
 
 The user interface is how the application looks. This comes down to your structure and style. The user experience is more about the features your game supports, how well they are integrated, and how intuitive the game play is.
 
@@ -73,7 +80,9 @@ Keep score. Let players play multiple games, and keep track of their wins and lo
 Allow players to choose who will go first. Or, alternatively, let the loser of the previous game go first (or randomize this decision if the previous game ended in a tie).
 Implement an AI so that players can play against the computer. It would be really cool if players could choose a difficulty level (i.e., easy, medium, hard, expert), and your AI would play accordingly.
 Add some animation to your game, so that it looks like the pieces are really sliding down from the top of the board (like they would in real life!).
+
 Ultimate Tic-Tac-Toe
+
 Ultimate Tic-Tac-Toe is like nine separate games of Tic-Tac-Toe. Players need to win a game of Tic-Tac-Toe just to mark one square. Here are the rules and minimum requirements.
 
 The game is played on a 3-by-3 grid of local boards, where each local board is further divided into its own 3-by-3 grid of squares.
@@ -82,10 +91,10 @@ The local board on which you must play is determined by your opponent's previous
 If your opponent sends you to a completed local board with one or more free squares, you must play on that local board.
 If your opponent sends you to a completed local board with no free squares, you can play anywhere on the board.
 To make things a little easier for the players, you should highlight the local board in which they must play on each turn.
-As in ordinary Tic-Tac-Toe, a player wins a local board if he or she marks three consecutice squares: vertically, horizontally, or diagonally.
+As in ordinary Tic-Tac-Toe, a player wins a local board if he or she marks three consecutive squares: vertically, horizontally, or diagonally.
 A player wins the overall game if his or her local wins represent three consecutive local boards: vertically, horizontally, or diagonally.
 If all local boards have been completed without either player winning, the game ends in a tie.
-Remember, these are just the minimum requirements. My suggestion is that you spare no expense in making this game your own. Part of the grading process will be how desirable your game is to your peers. What makes a game desirable? User interface and user experience (affectionately known in the world of software developemnt as UI and UX).
+Remember, these are just the minimum requirements. My suggestion is that you spare no expense in making this game your own. Part of the grading process will be how desirable your game is to your peers. What makes a game desirable? User interface and user experience (affectionately known in the world of software development as UI and UX).
 
 The user interface is how the application looks. This comes down to your structure and style. The user experience is more about the features your game supports, how well they are integrated, and how intuitive the game play is.
 
@@ -94,7 +103,9 @@ Looking for a little inspiration? Here are some cool features you might consider
 Keep score. Let players play multiple games, and keep track of their wins and losses.
 Allow players to choose who will go first. Or, alternatively, let the loser of the previous game go first (or randomize this decision if the previous game ended in a tie).
 Implement an AI so that players can play against the computer. It would be really cool if players could choose a difficulty level (i.e., easy, medium, hard, expert), and your AI would play accordingly.
+
 Brick Breaker
+
 Brick Breaker is a classic arcade-style game, where the player must use a ball and a paddle to break bricks. Here are the rules and minimum requirements.
 
 The game is played on an open board with a grid of bricks at the top and a paddle at the bottom.
