@@ -38,6 +38,7 @@ function init() {
 
 function render() {
   board.forEach(function(mark, index) {
+    console.log(squares[index]);
     squares[index].textContext = mark;
   });
 }
@@ -47,11 +48,8 @@ function takeTurn(e) {
     return square === e.target;
   });
 
-
-/*
   board[index] = turn;
   turn = turn === "X" ? "O" : "X";
 
   render();
-*/
 }
