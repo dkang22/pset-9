@@ -27,9 +27,6 @@ document.getElementById("board").onclick = takeTurn;
 
 function init() {
   board = [
-    "", "", "",
-    "", "", "",
-    "", "", ""
   ];
 
   turn = "X";
@@ -39,7 +36,7 @@ function init() {
 function render() {
   board.forEach(function(mark, index) {
     console.log(squares[index]);
-    squares[index].textContext = mark;
+    squares[index].textContent = mark;
   });
 }
 
