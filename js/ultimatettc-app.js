@@ -165,6 +165,8 @@ function getLocalWinner(e){
       board[condition[1]] === board[condition[2]]
     ) {
 
+      winner = board[condition[0]];
+/*
     let index = squares.findIndex(function(square) {
         return square === e.target;
     });
@@ -178,7 +180,8 @@ function getLocalWinner(e){
     winner = squares[bigIndex];
     console.log(winner);
   //  console.log(squares[bigIndex]);
-  //  console.log("LOCAL WINNER");
+*/
+    console.log("LOCAL WINNER");
     }
   });
 
