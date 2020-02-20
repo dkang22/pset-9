@@ -134,8 +134,11 @@ function takeTurn(e) {
 
   if (squares[index].textContent !== "X" && squares[index].textContent !== "O") {
     board[index] = turn;
-    turn = turn === "X" ? "O" : "X";
+
     localWin = getLocalWinner();
+
+    turn = turn === "X" ? "O" : "X";
+
   }
 
   if(localWin) {
@@ -143,9 +146,10 @@ function takeTurn(e) {
     if (bigIndex !== 0) {
       bigIndex = bigIndex * 10;
     }
-    squares[bigIndex].textContent = "X";
+    turn = turn === "X" ? "O" : "X";
+    squares[bigIndex].textContent = turn;
   }
-
+  localWin = false;
   render();
 }
 
