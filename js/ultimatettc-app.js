@@ -136,6 +136,7 @@ function takeTurn(e) {
     board[index] = turn;
 
     localWin = getLocalWinner();
+    overallWin = getOverallWinner();
 
     turn = turn === "X" ? "O" : "X";
   }
@@ -147,18 +148,12 @@ function takeTurn(e) {
     }
     turn = turn === "X" ? "O" : "X";
     squares[bigIndex].textContent = turn;
-/*
-    for (x = bigIndex + 1; x < bigIndex + 10; x++) {
-      console.log(squares[x]);
-      squares[x].textContent = x;
-    }
-*/
-    localWin = false;
+
   }
   render();
 }
 
-function getLocalWinner(e){
+function getLocalWinner(){
   let winner = null;
 
   miniWinningConditions.forEach(function(condition, index) {
@@ -173,4 +168,20 @@ function getLocalWinner(e){
   });
 
   return winner;
+}
+
+function getOverallWinner(){
+  let winner = null;
+
+  winningConditionsOverall.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[0]] === board[condition[2]]
+    ){
+        winner = board[condition[0]];
+    }
+  });
+
+  //return winner ? winner : board.includes("") ? null : "T";
 }
