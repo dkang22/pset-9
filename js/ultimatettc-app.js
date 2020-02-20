@@ -128,32 +128,34 @@ function render() {
 }
 
 function takeTurn(e) {
-  let index = squares.findIndex(function(square) {
-    return square === e.target;
-  });
+  if (!overallWin) {
+    let index = squares.findIndex(function(square) {
+      return square === e.target;
+    });
 
-  if (squares[index].textContent !== "X" && squares[index].textContent !== "O") {
-    board[index] = turn;
+    if (squares[index].textContent !== "X" && squares[index].textContent !== "O") {
+      board[index] = turn;
 
-    localWin = getLocalWinner();
-    overallWin = getOverallWinner();
+      localWin = getLocalWinner(e);
+      overallWin = getOverallWinner();
 
-    turn = turn === "X" ? "O" : "X";
-  }
-
-  if(localWin) {
-    let bigIndex = Math.floor((index/10));
-    if (bigIndex !== 0) {
-      bigIndex = bigIndex * 10;
+      turn = turn === "X" ? "O" : "X";
     }
-    turn = turn === "X" ? "O" : "X";
-    squares[bigIndex].textContent = turn;
 
+    if(localWin) {
+      let bigIndex = Math.floor((index/10));
+      if (bigIndex !== 0) {
+        bigIndex = bigIndex * 10;
+      }
+      turn = turn === "X" ? "O" : "X";
+      squares[bigIndex].textContent = turn;
+
+    }
+    render();
   }
-  render();
 }
 
-function getLocalWinner(){
+function getLocalWinner(e){
   let winner = null;
 
   miniWinningConditions.forEach(function(condition, index) {
@@ -162,8 +164,21 @@ function getLocalWinner(){
       board[condition[0]] === board[condition[1]] &&
       board[condition[1]] === board[condition[2]]
     ) {
-    winner = board[condition[0]];
-    console.log("WINNER");
+
+    let index = squares.findIndex(function(square) {
+        return square === e.target;
+    });
+
+    let bigIndex = Math.floor((index/10));
+    if (bigIndex !== 0) {
+      bigIndex = bigIndex * 10;
+    }
+
+    console.log(bigIndex);
+    winner = squares[bigIndex];
+    console.log(winner);
+  //  console.log(squares[bigIndex]);
+  //  console.log("LOCAL WINNER");
     }
   });
 
@@ -179,7 +194,8 @@ function getOverallWinner(){
       board[condition[0]] === board[condition[1]] &&
       board[condition[0]] === board[condition[2]]
     ){
-        winner = board[condition[0]];
+      winner = board[condition[0]];
+      console.log("OVERALL WINNER");
     }
   });
 

@@ -82,7 +82,7 @@ h4 {
 }
 
 .square:hover {
-  background-color: #C3C3C3;
+  opacity: 0.80;
   cursor: pointer;
 }
 
