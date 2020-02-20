@@ -138,7 +138,6 @@ function takeTurn(e) {
     localWin = getLocalWinner();
 
     turn = turn === "X" ? "O" : "X";
-
   }
 
   if(localWin) {
@@ -148,8 +147,14 @@ function takeTurn(e) {
     }
     turn = turn === "X" ? "O" : "X";
     squares[bigIndex].textContent = turn;
+/*
+    for (x = bigIndex + 1; x < bigIndex + 10; x++) {
+      console.log(squares[x]);
+      squares[x].textContent = x;
+    }
+*/
+    localWin = false;
   }
-  localWin = false;
   render();
 }
 
