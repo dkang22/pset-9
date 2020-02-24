@@ -1,15 +1,4 @@
 ///////////////////// CONSTANTS /////////////////////////////////////
-const winningConditionsOverall = [
-  [0, 10, 20],
-  [30, 40, 50],
-  [60, 70, 80],
-  [0, 30, 60],
-  [10, 40, 70],
-  [20, 50, 80],
-  [0, 40, 80],
-  [20, 40, 60]
-];
-
 const miniWinningConditions1 = [
   //minibox 1
   [1, 2, 3],
@@ -223,7 +212,7 @@ function takeTurn(e) {
       }
 
 
-  //    overallWin = getOverallWinner();
+      overallWin = getOverallWinner();
 
       turn = turn === "X" ? "O" : "X";
     }
@@ -423,18 +412,29 @@ function getLocalWinner9(e){
 }
 
 function getOverallWinner(){
-  let winner = null;
+  let winner = false;
 
-  winningConditionsOverall.forEach(function(condition, index) {
-    if (
-      board[condition[0]] &&
-      board[condition[0]] === board[condition[1]] &&
-      board[condition[0]] === board[condition[2]]
-    ){
-      winner = board[condition[0]];
+  if (
+    (localWin1 === "X" && localWin2 === "X" && localWin3 === "X") ||
+    (localWin4 === "X" && localWin5 === "X" && localWin6 === "X") ||
+    (localWin7 === "X" && localWin8 === "X" && localWin9 === "X") ||
+    (localWin1 === "X" && localWin4 === "X" && localWin7 === "X") ||
+    (localWin2 === "X" && localWin5 === "X" && localWin8 === "X") ||
+    (localWin5 === "X" && localWin6 === "X" && localWin9 === "X") ||
+    (localWin1 === "X" && localWin5 === "X" && localWin9 === "X") ||
+    (localWin3 === "X" && localWin5 === "X" && localWin7 === "X") ||
+
+    (localWin1 === "O" && localWin2 === "O" && localWin3 === "O") ||
+    (localWin4 === "O" && localWin5 === "O" && localWin6 === "O") ||
+    (localWin7 === "O" && localWin8 === "O" && localWin9 === "O") ||
+    (localWin1 === "O" && localWin4 === "O" && localWin7 === "O") ||
+    (localWin2 === "O" && localWin5 === "O" && localWin8 === "O") ||
+    (localWin5 === "O" && localWin6 === "O" && localWin9 === "O") ||
+    (localWin1 === "O" && localWin5 === "O" && localWin9 === "O") ||
+    (localWin3 === "O" && localWin5 === "O" && localWin7 === "O")
+  ) {
       console.log("OVERALL WINNER");
-    }
-  });
+  }
 
   //return winner ? winner : board.includes("") ? null : "T";
 }
