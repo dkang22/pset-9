@@ -33,7 +33,8 @@ const miniWinningConditions2 = [
   [11, 15, 19],
   [13, 15, 17]
 ]
-/*
+
+const miniWinningConditions3 = [
   //minibox 3
   [21, 22, 23],
   [24, 25, 26],
@@ -42,7 +43,10 @@ const miniWinningConditions2 = [
   [22, 25, 28],
   [23, 26, 29],
   [21, 25, 29],
-  [23, 25, 27],
+  [23, 25, 27]
+]
+
+const miniWinningConditions4 = [
   //minibox 4
   [31, 32, 33],
   [34, 35, 36],
@@ -51,7 +55,10 @@ const miniWinningConditions2 = [
   [32, 35, 38],
   [33, 36, 39],
   [31, 35, 39],
-  [33, 35, 37],
+  [33, 35, 37]
+]
+
+const miniWinningConditions5 = [
   //minibox 5
   [41, 42, 43],
   [44, 45, 46],
@@ -60,7 +67,10 @@ const miniWinningConditions2 = [
   [42, 45, 48],
   [43, 46, 49],
   [41, 45, 49],
-  [43, 45, 47],
+  [43, 45, 47]
+]
+
+const miniWinningConditions6 = [
   //minibox 6
   [51, 52, 53],
   [54, 55, 56],
@@ -69,7 +79,10 @@ const miniWinningConditions2 = [
   [52, 55, 58],
   [53, 56, 59],
   [51, 55, 59],
-  [53, 55, 57],
+  [53, 55, 57]
+]
+
+const miniWinningConditions7 = [
   //minibox 7
   [61, 62, 63],
   [64, 65, 66],
@@ -78,7 +91,10 @@ const miniWinningConditions2 = [
   [62, 65, 68],
   [63, 66, 69],
   [61, 65, 69],
-  [63, 65, 67],
+  [63, 65, 67]
+]
+
+const miniWinningConditions8 = [
   //minibox 8
   [71, 72, 73],
   [74, 75, 76],
@@ -87,7 +103,10 @@ const miniWinningConditions2 = [
   [72, 75, 78],
   [73, 76, 79],
   [71, 75, 79],
-  [73, 75, 77],
+  [73, 75, 77]
+]
+
+const miniWinningConditions9 = [
   //minibox 9
   [81, 82, 83],
   [84, 85, 86],
@@ -96,15 +115,22 @@ const miniWinningConditions2 = [
   [82, 85, 88],
   [83, 86, 89],
   [81, 85, 89],
-  [83, 85, 87],
+  [83, 85, 87]
 ]
-*/
+
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
 let turn;
 let overallWin = false;
 let localWin1 = false;
 let localWin2 = false;
+let localWin3 = false;
+let localWin4 = false;
+let localWin5 = false;
+let localWin6 = false;
+let localWin7 = false;
+let localWin8 = false;
+let localWin9 = false;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
@@ -153,6 +179,49 @@ function takeTurn(e) {
       } else {
         localWin2 = getLocalWinner2(e);
       }
+
+      if(localWin3 === "X" || localWin3 === "O") {
+        //don't run this function again
+      } else {
+        localWin3 = getLocalWinner3(e);
+      }
+
+      if(localWin4 === "X" || localWin4 === "O") {
+        //don't run this function again
+      } else {
+        localWin4 = getLocalWinner4(e);
+      }
+
+      if(localWin5 === "X" || localWin5 === "O") {
+        //don't run this function again
+      } else {
+        localWin5 = getLocalWinner5(e);
+      }
+
+      if(localWin6 === "X" || localWin6 === "O") {
+        //don't run this function again
+      } else {
+        localWin6 = getLocalWinner6(e);
+      }
+
+      if(localWin7 === "X" || localWin7 === "O") {
+        //don't run this function again
+      } else {
+        localWin7 = getLocalWinner7(e);
+      }
+
+      if(localWin8 === "X" || localWin8 === "O") {
+        //don't run this function again
+      } else {
+        localWin8 = getLocalWinner8(e);
+      }
+
+      if(localWin9 === "X" || localWin9 === "O") {
+        //don't run this function again
+      } else {
+        localWin9 = getLocalWinner9(e);
+      }
+
 
   //    overallWin = getOverallWinner();
 
@@ -214,6 +283,139 @@ function getLocalWinner2(e){
     winner = board[condition[0]];
     localWin2 = true;
     console.log("LOCAL WINNER 2");
+    }
+  });
+
+  return winner;
+}
+
+function getLocalWinner3(e){
+  let winner = false;
+
+  miniWinningConditions3.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin3 = true;
+    console.log("LOCAL WINNER 3");
+    }
+  });
+
+  return winner;
+}
+
+function getLocalWinner4(e){
+  let winner = false;
+
+  miniWinningConditions4.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin4 = true;
+    console.log("LOCAL WINNER 4");
+    }
+  });
+
+  return winner;
+}
+
+function getLocalWinner5(e){
+  let winner = false;
+
+  miniWinningConditions5.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin5 = true;
+    console.log("LOCAL WINNER 5");
+    }
+  });
+
+  return winner;
+}
+
+function getLocalWinner6(e){
+  let winner = false;
+
+  miniWinningConditions6.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin6 = true;
+    console.log("LOCAL WINNER 6");
+    }
+  });
+
+  return winner;
+}
+
+function getLocalWinner7(e){
+  let winner = false;
+
+  miniWinningConditions7.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin7 = true;
+    console.log("LOCAL WINNER 7");
+    }
+  });
+
+  return winner;
+}
+
+function getLocalWinner8(e){
+  let winner = false;
+
+  miniWinningConditions8.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin8 = true;
+    console.log("LOCAL WINNER 8");
+    }
+  });
+
+  return winner;
+}
+
+function getLocalWinner9(e){
+  let winner = false;
+
+  miniWinningConditions9.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin9 = true;
+    console.log("LOCAL WINNER 9");
     }
   });
 
