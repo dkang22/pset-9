@@ -10,7 +10,7 @@ const winningConditionsOverall = [
   [20, 40, 60]
 ];
 
-const miniWinningConditions = [
+const miniWinningConditions1 = [
   //minibox 1
   [1, 2, 3],
   [4, 5, 6],
@@ -19,7 +19,10 @@ const miniWinningConditions = [
   [2, 5, 8],
   [3, 6, 9],
   [1, 5, 9],
-  [3, 5, 7],
+  [3, 5, 7]
+]
+
+const miniWinningConditions2 = [
   //minibox 2
   [11, 12, 13],
   [14, 15, 16],
@@ -28,7 +31,9 @@ const miniWinningConditions = [
   [12, 15, 18],
   [13, 16, 19],
   [11, 15, 19],
-  [13, 15, 17],
+  [13, 15, 17]
+]
+/*
   //minibox 3
   [21, 22, 23],
   [24, 25, 26],
@@ -93,12 +98,13 @@ const miniWinningConditions = [
   [81, 85, 89],
   [83, 85, 87],
 ]
-
+*/
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
 let turn;
-let overallWin;
-let localWin;
+let overallWin = false;
+let localWin1 = false;
+let localWin2 = false;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
@@ -136,13 +142,24 @@ function takeTurn(e) {
     if (squares[index].textContent !== "X" && squares[index].textContent !== "O") {
       board[index] = turn;
 
-      localWin = getLocalWinner(e);
-      overallWin = getOverallWinner();
+      if(localWin1 === "X" || localWin1 === "O") {
+        //don't run this function again
+      } else {
+        localWin1 = getLocalWinner1(e);
+      }
+
+      if(localWin2 === "X" || localWin2 === "O") {
+        //don't run this function again
+      } else {
+        localWin2 = getLocalWinner2(e);
+      }
+
+  //    overallWin = getOverallWinner();
 
       turn = turn === "X" ? "O" : "X";
     }
-
-    if(localWin) {
+/*
+    if(localWin1 === true) {
       let bigIndex = Math.floor((index/10));
       if (bigIndex !== 0) {
         bigIndex = bigIndex * 10;
@@ -151,37 +168,52 @@ function takeTurn(e) {
       squares[bigIndex].textContent = turn;
 
     }
+    if(localWin2 === true) {
+      let bigIndex = Math.floor((index/10));
+      if (bigIndex !== 0) {
+        bigIndex = bigIndex * 10;
+      }
+      turn = turn === "X" ? "O" : "X";
+      squares[bigIndex].textContent = turn;
+
+    }
+*/
     render();
   }
 }
 
-function getLocalWinner(e){
-  let winner = null;
+function getLocalWinner1(e){
+  let winner = false;
 
-  miniWinningConditions.forEach(function(condition, index) {
+  miniWinningConditions1.forEach(function(condition, index) {
     if (
       board[condition[0]] &&
       board[condition[0]] === board[condition[1]] &&
       board[condition[1]] === board[condition[2]]
     ) {
 
-      winner = board[condition[0]];
-/*
-    let index = squares.findIndex(function(square) {
-        return square === e.target;
-    });
+    winner = board[condition[0]];
+    localWin1 = true;
+    console.log("LOCAL WINNER 1");
+  }
+  });
 
-    let bigIndex = Math.floor((index/10));
-    if (bigIndex !== 0) {
-      bigIndex = bigIndex * 10;
-    }
+  return winner;
+}
 
-    console.log(bigIndex);
-    winner = squares[bigIndex];
-    console.log(winner);
-  //  console.log(squares[bigIndex]);
-*/
-    console.log("LOCAL WINNER");
+function getLocalWinner2(e){
+  let winner = false;
+
+  miniWinningConditions2.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]] &&
+      board[condition[1]] === board[condition[2]]
+    ) {
+
+    winner = board[condition[0]];
+    localWin2 = true;
+    console.log("LOCAL WINNER 2");
     }
   });
 
