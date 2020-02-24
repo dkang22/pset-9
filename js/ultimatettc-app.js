@@ -110,6 +110,7 @@ const miniWinningConditions9 = [
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
 let board;
 let turn;
+let win;
 let overallWin = false;
 let localWin1 = false;
 let localWin2 = false;
@@ -145,7 +146,9 @@ function render() {
     squares[index].textContent = mark;
   });
 
-//  message.textContent = win ? `${win} wins!` : `Turn: ${turn}`;
+  message.textContent = win ? `${overallWin} wins!` : `Turn: ${turn}`;
+
+  //returns "undefined wins"
 }
 
 function takeTurn(e) {
@@ -422,8 +425,12 @@ function getOverallWinner(){
     (localWin2 === "X" && localWin5 === "X" && localWin8 === "X") ||
     (localWin5 === "X" && localWin6 === "X" && localWin9 === "X") ||
     (localWin1 === "X" && localWin5 === "X" && localWin9 === "X") ||
-    (localWin3 === "X" && localWin5 === "X" && localWin7 === "X") ||
-
+    (localWin3 === "X" && localWin5 === "X" && localWin7 === "X")
+  ) {
+    console.log("X is the ultimate winner!");
+    overallWin = "X";
+    win = true;
+  } else if (
     (localWin1 === "O" && localWin2 === "O" && localWin3 === "O") ||
     (localWin4 === "O" && localWin5 === "O" && localWin6 === "O") ||
     (localWin7 === "O" && localWin8 === "O" && localWin9 === "O") ||
@@ -433,7 +440,11 @@ function getOverallWinner(){
     (localWin1 === "O" && localWin5 === "O" && localWin9 === "O") ||
     (localWin3 === "O" && localWin5 === "O" && localWin7 === "O")
   ) {
-      console.log("OVERALL WINNER");
+    console.log("O is the OVERALL WINNER");
+    overallWin = "O";
+    win = true;
+  } else {
+    //null
   }
 
   //return winner ? winner : board.includes("") ? null : "T";
