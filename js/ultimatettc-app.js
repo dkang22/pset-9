@@ -161,60 +161,51 @@ function takeTurn(e) {
       board[index] = turn;
 
       if(localWin1 === "X" || localWin1 === "O") {
-        //don't run this function again
       } else {
         localWin1 = getLocalWinner1(e);
       }
 
       if(localWin2 === "X" || localWin2 === "O") {
-        //don't run this function again
       } else {
         localWin2 = getLocalWinner2(e);
       }
 
       if(localWin3 === "X" || localWin3 === "O") {
-        //don't run this function again
       } else {
         localWin3 = getLocalWinner3(e);
       }
 
       if(localWin4 === "X" || localWin4 === "O") {
-        //don't run this function again
       } else {
         localWin4 = getLocalWinner4(e);
       }
 
       if(localWin5 === "X" || localWin5 === "O") {
-        //don't run this function again
       } else {
         localWin5 = getLocalWinner5(e);
       }
 
       if(localWin6 === "X" || localWin6 === "O") {
-        //don't run this function again
       } else {
         localWin6 = getLocalWinner6(e);
       }
 
       if(localWin7 === "X" || localWin7 === "O") {
-        //don't run this function again
       } else {
         localWin7 = getLocalWinner7(e);
       }
 
       if(localWin8 === "X" || localWin8 === "O") {
-        //don't run this function again
       } else {
         localWin8 = getLocalWinner8(e);
       }
 
       if(localWin9 === "X" || localWin9 === "O") {
-        //don't run this function again
       } else {
         localWin9 = getLocalWinner9(e);
       }
 
-
+      render();
       overallWin = getOverallWinner();
 
       turn = turn === "X" ? "O" : "X";
@@ -427,9 +418,10 @@ function getOverallWinner(){
     (localWin1 === "X" && localWin5 === "X" && localWin9 === "X") ||
     (localWin3 === "X" && localWin5 === "X" && localWin7 === "X")
   ) {
-    console.log("X is the ultimate winner!");
     overallWin = "X";
+    console.log(overallWin + " is the ultimate winner!");
     win = true;
+    winner = "X";
   } else if (
     (localWin1 === "O" && localWin2 === "O" && localWin3 === "O") ||
     (localWin4 === "O" && localWin5 === "O" && localWin6 === "O") ||
@@ -440,12 +432,11 @@ function getOverallWinner(){
     (localWin1 === "O" && localWin5 === "O" && localWin9 === "O") ||
     (localWin3 === "O" && localWin5 === "O" && localWin7 === "O")
   ) {
-    console.log("O is the OVERALL WINNER");
     overallWin = "O";
+    console.log(overallWin + " is the OVERALL WINNER");
     win = true;
-  } else {
-    //null
-  }
+    winner = "O";
+  } else {}
 
-  //return winner ? winner : board.includes("") ? null : "T";
+  return winner;
 }
