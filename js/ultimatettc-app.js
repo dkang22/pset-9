@@ -145,6 +145,11 @@ document.getElementById("reset-button").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 
 function init() {
+  console.log("reset");
+  for (x = 0; x < 90; x++) {
+    squares[x].textContent === ""
+  }
+
   board = [
   ];
 
