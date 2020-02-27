@@ -145,9 +145,12 @@ document.getElementById("reset-button").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 
 function init() {
-  console.log("reset");
   for (x = 0; x < 90; x++) {
-    squares[x].textContent === ""
+    if (x % 10 === 0) {
+
+    } else {
+      squares[x].textContent = "";
+    }
   }
 
   board = [
@@ -230,26 +233,7 @@ function takeTurn(e) {
 
       turn = turn === "X" ? "O" : "X";
     }
-/*
-    if(localWin1 === true) {
-      let bigIndex = Math.floor((index/10));
-      if (bigIndex !== 0) {
-        bigIndex = bigIndex * 10;
-      }
-      turn = turn === "X" ? "O" : "X";
-      squares[bigIndex].textContent = turn;
 
-    }
-    if(localWin2 === true) {
-      let bigIndex = Math.floor((index/10));
-      if (bigIndex !== 0) {
-        bigIndex = bigIndex * 10;
-      }
-      turn = turn === "X" ? "O" : "X";
-      squares[bigIndex].textContent = turn;
-
-    }
-*/
     render();
   }
 }
@@ -593,18 +577,6 @@ function getOverallWinner(){
     win = true;
     winner = "O";
   } else {
-/*
-    ((localWin1 === "O" || localWin1 === "X") &&
-    (localWin2 === "O" && localWin3 === "O") ||
-    (localWin4 === "O" && localWin5 === "O" && localWin6 === "O") ||
-    (localWin7 === "O" && localWin8 === "O" && localWin9 === "O") ||
-    (localWin1 === "O" && localWin4 === "O" && localWin7 === "O") ||
-    (localWin2 === "O" && localWin5 === "O" && localWin8 === "O") ||
-    (localWin5 === "O" && localWin6 === "O" && localWin9 === "O") ||
-    (localWin1 === "O" && localWin5 === "O" && localWin9 === "O") ||
-    (localWin3 === "O" && localWin5 === "O" && localWin7 === "O")
-    overallWin = "T";
-  */
   }
 
   return winner;
