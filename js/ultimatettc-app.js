@@ -152,7 +152,7 @@ function init() {
       squares[x].textContent = "";
     }
   }
-  
+
   win = false;
   draw = false;
   overallWin = false;
@@ -256,6 +256,7 @@ function takeTurn(e) {
       tieCheck = checkTie();
 
       turn = turn === "X" ? "O" : "X";
+      restrictedTurn(e);
     }
 
     render();
@@ -626,4 +627,33 @@ function checkTie(){
   }
 
   return draw;
+}
+
+function restrictedTurn(e){
+  let index = squares.findIndex(function(square) {
+    return square === e.target;
+  });
+
+  if (index % 10 === 1) {
+    console.log("next move must be in sq 1");
+  } else if (index % 10 === 2){
+    console.log("next move must be in sq 2");
+  } else if (index % 10 === 3){
+    console.log("next move must be in sq 3");
+  } else if (index % 10 === 4){
+    console.log("next move must be in sq 4");
+  } else if (index % 10 === 5){
+    console.log("next move must be in sq 5");
+  } else if (index % 10 === 6){
+    console.log("next move must be in sq 6");
+  } else if (index % 10 === 7){
+    console.log("next move must be in sq 7");
+  } else if (index % 10 === 8){
+    console.log("next move must be in sq 8");
+  } else if (index % 10 === 9){
+    console.log("next move must be in sq 9");
+  } else {
+
+  }
+
 }
