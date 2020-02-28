@@ -152,10 +152,34 @@ function init() {
       squares[x].textContent = "";
     }
   }
+  
+  win = false;
+  draw = false;
+  overallWin = false;
+  tieCheck = false;
+  localWin1 = false;
+  localWin2 = false;
+  localWin3 = false;
+  localWin4 = false;
+  localWin5 = false;
+  localWin6 = false;
+  localWin7 = false;
+  localWin8 = false;
+  localWin9 = false;
+  localWinner1 = "";
+  localWinner2 = "";
+  localWinner3 = "";
+  localWinner4 = "";
+  localWinner5 = "";
+  localWinner6 = "";
+  localWinner7 = "";
+  localWinner8 = "";
+  localWinner9 = "";
 
   board = [
   ];
 
+  message.textContent =  win ? `${overallWin} wins!` : `Turn: ${turn}`;
   turn = "X";
   render();
 }
