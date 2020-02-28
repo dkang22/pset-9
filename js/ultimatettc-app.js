@@ -133,6 +133,7 @@ let localWinner7 = "";
 let localWinner8 = "";
 let localWinner9 = "";
 let nextMoveRestriction = 0;
+let lastMoveRestriction = 20;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
@@ -148,12 +149,13 @@ document.getElementById("reset-button").onclick = init;
 function init() {
   for (x = 0; x < 90; x++) {
     if (x % 10 === 0) {
-
+      squares[x].id = "";
     } else {
       squares[x].textContent = "";
     }
   }
-
+  nextMoveRestriction = 0;
+  lastMoveRestriction = 20;
   win = false;
   draw = false;
   overallWin = false;
@@ -197,7 +199,7 @@ function render() {
   }
 
   for (x = 0; x < 10; x++) {
-    squares[x].id = "";
+  //  squares[x].id = "";
   }
 
 }
@@ -210,57 +212,46 @@ function takeTurn(e) {
     });
 
     if (nextMoveRestriction === 1) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 0){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
-      squares[0].id = "highlighted";
-      console.log("HIGHLIGHTED");
     } else if (nextMoveRestriction === 2) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 1){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
     } else if (nextMoveRestriction === 3) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 2){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
     } else if (nextMoveRestriction === 4) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 3){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
     } else if (nextMoveRestriction === 5) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 4){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
     } else if (nextMoveRestriction === 6) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 5){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
     } else if (nextMoveRestriction === 7) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 6){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
     } else if (nextMoveRestriction === 8) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 7){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
       }
     } else if (nextMoveRestriction === 9) {
-      console.log("not in correct box");
       if(Math.floor(index / 10) !== 8){
         squares[index] = "";
         turn = turn === "X" ? "O" : "X";
@@ -705,28 +696,47 @@ function restrictedTurn(e){
     nextMoveRestriction = 1;
   } else if (index % 10 === 2){
     console.log("next move must be in sq 2");
+    squares[10].id = "highlighted";
     nextMoveRestriction = 2;
   } else if (index % 10 === 3){
     console.log("next move must be in sq 3");
+    squares[20].id = "highlighted";
     nextMoveRestriction = 3;
   } else if (index % 10 === 4){
     console.log("next move must be in sq 4");
+    squares[30].id = "highlighted";
     nextMoveRestriction = 4;
   } else if (index % 10 === 5){
     console.log("next move must be in sq 5");
+    squares[40].id = "highlighted";
     nextMoveRestriction = 5;
   } else if (index % 10 === 6){
     console.log("next move must be in sq 6");
+    squares[50].id = "highlighted";
     nextMoveRestriction = 6;
   } else if (index % 10 === 7){
     console.log("next move must be in sq 7");
+    squares[60].id = "highlighted";
     nextMoveRestriction = 7;
   } else if (index % 10 === 8){
     console.log("next move must be in sq 8");
+    squares[70].id = "highlighted";
     nextMoveRestriction = 8;
   } else if (index % 10 === 9){
     console.log("next move must be in sq 9");
+    squares[80].id = "highlighted";
     nextMoveRestriction = 9;
   } else {
   }
+
+
+  if (lastMoveRestriction !== nextMoveRestriction) {
+    let lastBox = Number(lastMoveRestriction);
+    let lastIndex = (lastBox - 1) * 10;
+    if (lastIndex < 100) {
+      squares[lastIndex].id = "";
+    }
+  }
+
+  lastMoveRestriction = nextMoveRestriction;
 }

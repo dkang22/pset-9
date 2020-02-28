@@ -93,11 +93,6 @@ h4 {
   width: 225px;
 }
 
-#highlighted {
-  border-color: green;
-  background-color: blue;
-}
-
 #reset-button {
   background-color: black;
   border: 1px solid white;
@@ -124,4 +119,8 @@ h4 {
   background-color: black;
   color: white;
   font-size: 30px;
+}
+
+#highlighted {
+  border-color: yellow;
 }
