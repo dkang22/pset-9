@@ -132,6 +132,7 @@ let localWinner6 = "";
 let localWinner7 = "";
 let localWinner8 = "";
 let localWinner9 = "";
+let nextMoveRestriction;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
@@ -199,9 +200,31 @@ function render() {
 
 function takeTurn(e) {
   if (!overallWin) {
+
     let index = squares.findIndex(function(square) {
       return square === e.target;
     });
+
+    if (nextMoveRestriction === 1) {
+      console.log("not in correct box");
+      if(Math.floor(index / 10) !== 0){
+        squares[index] = "";
+        turn = turn === "X" ? "O" : "X";
+      }
+    } else if (nextMoveRestriction === 2) {
+      console.log("not in correct box");
+      if(Math.floor(index / 10) !== 1){
+        squares[index] = "";
+        turn = turn === "X" ? "O" : "X";
+      }
+    } else if (nextMoveRestriction === 3) {
+      console.log("not in correct box");
+      if(Math.floor(index / 10) !== 2){
+        squares[index] = "";
+        turn = turn === "X" ? "O" : "X";
+      }
+    } else {}
+
 
     if (squares[index].textContent !== "X" && squares[index].textContent !== "O") {
       board[index] = turn;
@@ -636,10 +659,13 @@ function restrictedTurn(e){
 
   if (index % 10 === 1) {
     console.log("next move must be in sq 1");
+    nextMoveRestriction = 1;
   } else if (index % 10 === 2){
     console.log("next move must be in sq 2");
+    nextMoveRestriction = 2;
   } else if (index % 10 === 3){
     console.log("next move must be in sq 3");
+    nextMoveRestriction = 3;
   } else if (index % 10 === 4){
     console.log("next move must be in sq 4");
   } else if (index % 10 === 5){
@@ -653,7 +679,5 @@ function restrictedTurn(e){
   } else if (index % 10 === 9){
     console.log("next move must be in sq 9");
   } else {
-
   }
-
 }
