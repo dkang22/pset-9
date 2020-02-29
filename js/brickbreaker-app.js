@@ -16,6 +16,8 @@ const BALL_RADIUS = 8;
 let leftArrow = false;
 let rightArrow = false;
 let life = 3;
+let score = 0;
+let scoreIncrement = 10;
 
 //PADDLE
 const paddle = {
@@ -29,14 +31,6 @@ const paddle = {
 //LOAD BACKGROUND IMAGE
 const backgroundImage = new Image();
 backgroundImage.src = "images/brickbreakerbackground.png";
-
-//DRAW PADDLE
-function drawPaddle(){
-  ctx.fillStyle = "#2e3548";
-  ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-  ctx.strokeStyle = "#ffcd05";
-  ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
-}
 
 //CONTROL PADDLE
 document.addEventListener("keydown", function(event){
@@ -64,6 +58,33 @@ const ball = {
   dx : 3 * (Math.random() * 2 - 1),
   dy : -3
 }
+//CREATE BRICKS
+const brick = {
+  row : 3,
+  column : 5,
+  width : 55,
+  height : 20,
+  offSetLeft : 20,
+  offSetTop : 20,
+  marginTop : 40,
+  fillColor : "#2e3548",
+  strokeColor : "#FFF"
+}
+
+let bricks = [];
+
+function createBricks(){
+  for(r = 0; r < brick.row; r++){
+    bricks[r] = [];
+    for(c = 0; c < brick.column; c++){
+      bricks[r][c] = {
+        x : c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
+        y : r * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
+        status : true
+      }
+    }
+  }
+}
 
 //MOVE PADDLE
 function movePaddle(){
@@ -83,12 +104,6 @@ function drawBall(){
   ctx.strokeStyle = "#2e3548";
   ctx.stroke();
   ctx.closePath();
-}
-
-//DRAW function
-function draw(){
-  drawPaddle();
-  drawBall();
 }
 
 //BALL & WALL collision detection
@@ -128,35 +143,51 @@ function ballPaddleCollision(){
   }
 }
 
-//CREATE BRICKS
-const brick = {
-  row : 3,
-  column : 5,
-  width : 55,
-  height : 20,
-  offSetLeft : 20,
-  offSetTop : 20,
-  marginTop : 40,
-  fillColor : "#2e3548",
-  strokeColor : "#FFF"
-}
+createBricks();
 
-let bricks = [];
-
-function createBricks(){
-  for(r = 0; r < brick.row; r++){
-    bricks[r] = [];
-    for(c = 0; c < brick.column; c++){
-      bricks[r][c] = {
-        x : c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
-        y : r * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
-        status : true
-      }
+//BALL & BRICK COLLISION detection
+function ballBrickCollision(){
+  for(let r = 0; r < brick.row; r++){
+    for(let c = 0; c < brick.column; c++){
+        let b = bricks[r][c];
+        if(b.status === true){
+          if (
+            ball.x + ball.radius > b.x &&
+            ball.x - ball.radius < b.x + brick.width
+            && ball.y + ball.radius > b.y &&
+            ball.y - ball.radius < b.y + brick.height
+          ){
+            ball.dy = -ball.dy;
+            b.status = false;
+            score += scoreIncrement;
+          }
+        }
     }
   }
 }
 
-createBricks();
+// DRAW THE bricks
+function drawBricks(){
+  for(let r = 0; r < brick.row; r++){
+    for(let c = 0; c < brick.column; c++){
+        let b = bricks[r][c];
+        if(b.status === true){
+          ctx.fillStyle = brick.fillColor;
+          ctx.fillRect(b.x, b.y, brick.width, brick.height);
+          ctx.strokeStyle = brick.strokeColor;
+          ctx.strokeRect(b.x, b.y, brick.width, brick.height);
+        }
+    }
+  }
+}
+
+//DRAW PADDLE
+function drawPaddle(){
+  ctx.fillStyle = "#2e3548";
+  ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+  ctx.strokeStyle = "#ffcd05";
+  ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
+}
 
 //RESET the ball
 function resetBall(){
@@ -173,12 +204,20 @@ function moveBall(){
   ball.y += ball.dy;
 }
 
+//DRAW functions
+function draw(){
+  drawPaddle();
+  drawBall();
+  drawBricks();
+}
+
 //UPDATE GAME FUNCTION
 function update(){
   movePaddle();
   moveBall();
   ballWallCollision();
   ballPaddleCollision();
+  ballBrickCollision();
 }
 
 //GAME LOOP
