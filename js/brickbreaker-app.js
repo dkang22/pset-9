@@ -61,6 +61,26 @@ document.addEventListener("keyup", function(event){
   } else {}
 })
 
+//DISPLAY GAME OVER MESSAGE
+const gameover = document.getElementById("gameover");
+const win = document.getElementById("win");
+const lose = document.getElementById("lose");
+const restart = document.getElementById("restart");
+
+restart.addEventListener("click", function(){
+  location.reload();
+})
+
+function displayWin(){
+  gameover.style.display = "block";
+  win.style.diplay = "block";
+}
+
+function displayLose(){
+  gameover.style.display = "block";
+  lose.style.diplay = "block";
+}
+
 //CREATE THE BALL
 const ball = {
   x : canvas.width/2,
@@ -236,7 +256,8 @@ function draw(){
 
 //GAME OVER
 function endGame(){
-  if(heart <= 0){
+  if(heart < 0){
+    displayLose();
     gameOver = true;
   }
 }
@@ -252,13 +273,14 @@ function levelUp(){
 
   if(isLevelCompleted){
     if(level >= maxLevel){
+      displayWin();
       gameOver = true;
       return;
     }
 
     brick.row++;
     createBricks();
-    ball.speed += 1;
+    ball.speed += 1.5;
     resetBall();
     level++;
   }
