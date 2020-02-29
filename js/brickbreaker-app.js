@@ -13,9 +13,10 @@ const PADDLE_WIDTH = 100;
 const PADDLE_MARGIN_BOTTOM = 50;
 const PADDLE_HEIGHT = 20;
 const BALL_RADIUS = 8;
+let gameOver = false;
 let leftArrow = false;
 let rightArrow = false;
-let life = 3;
+let heart = 3;
 let score = 0;
 let scoreIncrement = 10;
 let level = 1;
@@ -71,7 +72,7 @@ const ball = {
 }
 //CREATE BRICKS
 const brick = {
-  row : 3,
+  row : 2,
   column : 5,
   width : 55,
   height : 20,
@@ -132,7 +133,7 @@ function ballWallCollision(){
   }
 
   if(ball.y + ball.radius > canvas.height){
-    life--;   //LOSE A life
+    heart--;   //LOSE A Heart
     resetBall();
   }
 }
@@ -228,9 +229,39 @@ function draw(){
   drawPaddle();
   drawBall();
   drawBricks();
-  displayGameStats(SCORE, 35, 25, SCORE_IMG, 5, 5);
-  displayGameStats(LEVEL, canvas.width/2, 25, LEVEL_IMG, canvas.width/2 - 30, 5);
-  displayGameStats(HEART, canvas.width - 25, 25, HEART_IMG, canvas.width-55, 5);
+  displayGameStats(score, 35, 25, SCORE_IMG, 5, 5);
+  displayGameStats(level, canvas.width/2 + 5, 25, LEVEL_IMG, canvas.width/2 - 25, 5);
+  displayGameStats(heart, canvas.width - 25, 25, HEART_IMG, canvas.width-55, 5);
+}
+
+//GAME OVER
+function endGame(){
+  if(heart <= 0){
+    gameOver = true;
+  }
+}
+
+//LEVEL UP
+function levelUp(){
+  let isLevelCompleted = true;
+  for(let r = 0; r < brick.row; r++){
+    for(let c = 0; c < brick.column; c++){
+      isLevelCompleted = isLevelCompleted && ! bricks[r][c].status;
+    }
+  }
+
+  if(isLevelCompleted){
+    if(level >= maxLevel){
+      gameOver = true;
+      return;
+    }
+
+    brick.row++;
+    createBricks();
+    ball.speed += 1;
+    resetBall();
+    level++;
+  }
 }
 
 //UPDATE GAME FUNCTION
@@ -240,6 +271,8 @@ function update(){
   ballWallCollision();
   ballPaddleCollision();
   ballBrickCollision();
+  levelUp();
+  endGame();
 }
 
 //GAME LOOP
@@ -249,7 +282,10 @@ function loop(){
 
   draw();
   update();
-  requestAnimationFrame(loop);
+
+  if(!gameOver){
+    requestAnimationFrame(loop);
+  }
 }
 
 loop();
