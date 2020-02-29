@@ -3,7 +3,7 @@ const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
 
 //CANVAS BORDER
-canvas.style.border = "1px solid #0ff";
+canvas.style.border = "1px solid #000000";
 
 //MAKE PADDLE BORDER THICKER
 ctx.lineWidth = 3;
@@ -62,23 +62,17 @@ document.addEventListener("keyup", function(event){
 })
 
 //DISPLAY GAME OVER MESSAGE
-const gameover = document.getElementById("gameover");
-const win = document.getElementById("win");
-const lose = document.getElementById("lose");
+const over = document.getElementById("gameover");
+const endImage = document.getElementById("endImage");
 const restart = document.getElementById("restart");
 
 restart.addEventListener("click", function(){
   location.reload();
 })
 
-function displayWin(){
-  gameover.style.display = "block";
-  win.style.diplay = "block";
-}
-
-function displayLose(){
-  gameover.style.display = "block";
-  lose.style.diplay = "block";
+function displayEnd(){
+  over.style.display = "block";
+  endImage.style.diplay = "block";
 }
 
 //CREATE THE BALL
@@ -257,7 +251,7 @@ function draw(){
 //GAME OVER
 function endGame(){
   if(heart < 0){
-    displayLose();
+    displayEnd();
     gameOver = true;
   }
 }
@@ -273,7 +267,7 @@ function levelUp(){
 
   if(isLevelCompleted){
     if(level >= maxLevel){
-      displayWin();
+      displayEnd();
       gameOver = true;
       return;
     }
@@ -311,3 +305,5 @@ function loop(){
 }
 
 loop();
+
+//NEED TO ADD MOUSE FUNCTIONING
