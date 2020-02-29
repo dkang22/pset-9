@@ -16,7 +16,7 @@ const BALL_RADIUS = 8;
 let gameOver = false;
 let leftArrow = false;
 let rightArrow = false;
-let heart = 3;
+let heart = 0;
 let score = 0;
 let scoreIncrement = 10;
 let level = 1;
@@ -71,8 +71,9 @@ restart.addEventListener("click", function(){
 })
 
 function displayEnd(){
-  over.style.display = "block";
-  endImage.style.diplay = "block";
+  over.style.display = "inline";
+  endImage.style.diplay = "inline";
+  canvas.style.display = "none";
 }
 
 //CREATE THE BALL
