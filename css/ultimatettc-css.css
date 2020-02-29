@@ -37,6 +37,13 @@ h4 {
   font-weight: bold;
 }
 
+a {
+  text-decoration: none;
+  color: #FEFEFE;
+  font-size: 20px;
+  margin-top: 40px;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -102,7 +109,7 @@ h4 {
   margin: 1%;
   text-align: center;
   width: 456px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 #reset-button:hover {
