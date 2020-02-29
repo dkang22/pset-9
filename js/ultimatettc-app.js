@@ -134,10 +134,16 @@ let localWinner8 = "";
 let localWinner9 = "";
 let nextMoveRestriction = 0;
 let lastMoveRestriction = 20;
+let scoreX = 0;
+let scoreO = 0;
+let maxCapacity = false;
+let counter = 0;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
+const scoreXMessage = document.querySelector("h3");
+const scoreOMessage = document.querySelector("h4");
 
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
@@ -147,13 +153,6 @@ document.getElementById("reset-button").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 
 function init() {
-  for (x = 0; x < 90; x++) {
-    if (x % 10 === 0) {
-      squares[x].id = "";
-    } else {
-      squares[x].textContent = "";
-    }
-  }
   nextMoveRestriction = 0;
   lastMoveRestriction = 20;
   win = false;
@@ -178,12 +177,32 @@ function init() {
   localWinner7 = "";
   localWinner8 = "";
   localWinner9 = "";
+  counter = 0;
+  board = [  ];
 
-  board = [
-  ];
+  for (x = 0; x < 90; x++) {
+    if (x % 10 === 0) {
+      squares[x].id = "";
+    } else {
+      squares[x].textContent = "";
+    }
+  }
+
+  do {
+    var initialPlayer = prompt("Enter X or O to declare the first player: ");
+    if (initialPlayer === null) {
+      turn = "X";
+      break;
+    } else if (initialPlayer === "X" || initialPlayer === "x") {
+      turn = "X";
+    } else if (initialPlayer === "O" || initialPlayer === "o") {
+      turn = "O";
+    } else {
+      //intentially blank
+    }
+  } while (initialPlayer !== "X" && initialPlayer !== "x" && initialPlayer !== "O" && initialPlayer !== "o");
 
   message.textContent =  win ? `${overallWin} wins!` : `Turn: ${turn}`;
-  turn = "X";
   render();
 }
 
@@ -197,11 +216,6 @@ function render() {
   } else {
     message.textContent = win ? `${overallWin} wins!` : `Turn: ${turn}`;
   }
-
-  for (x = 0; x < 10; x++) {
-  //  squares[x].id = "";
-  }
-
 }
 
 function takeTurn(e) {
@@ -210,6 +224,10 @@ function takeTurn(e) {
     let index = squares.findIndex(function(square) {
       return square === e.target;
     });
+
+    if (maxCapacity === true ) {
+      nextMoveRestriction = 0;
+    }
 
     if (nextMoveRestriction === 1) {
       if(Math.floor(index / 10) !== 0){
@@ -643,6 +661,8 @@ function getOverallWinner(){
     console.log(overallWin + " is the ultimate winner!");
     win = true;
     winner = "X";
+    scoreX++;
+    scoreXMessage.textContent = scoreX;
   } else if (
     (localWin1 === "O" && localWin2 === "O" && localWin3 === "O") ||
     (localWin4 === "O" && localWin5 === "O" && localWin6 === "O") ||
@@ -657,6 +677,8 @@ function getOverallWinner(){
     console.log(overallWin + " is the OVERALL WINNER");
     win = true;
     winner = "O";
+    scoreO++;
+    scoreOMessage.textContent = scoreO;
   } else {
   }
 
@@ -686,44 +708,38 @@ function checkTie(){
 }
 
 function restrictedTurn(e){
+  maxCapacity = false;
+  counter = 0;
+
   let index = squares.findIndex(function(square) {
     return square === e.target;
   });
 
   if (index % 10 === 1) {
-    console.log("next move must be in sq 1");
     squares[0].id = "highlighted";
     nextMoveRestriction = 1;
   } else if (index % 10 === 2){
-    console.log("next move must be in sq 2");
     squares[10].id = "highlighted";
     nextMoveRestriction = 2;
   } else if (index % 10 === 3){
-    console.log("next move must be in sq 3");
     squares[20].id = "highlighted";
     nextMoveRestriction = 3;
   } else if (index % 10 === 4){
-    console.log("next move must be in sq 4");
     squares[30].id = "highlighted";
     nextMoveRestriction = 4;
   } else if (index % 10 === 5){
-    console.log("next move must be in sq 5");
     squares[40].id = "highlighted";
     nextMoveRestriction = 5;
   } else if (index % 10 === 6){
-    console.log("next move must be in sq 6");
     squares[50].id = "highlighted";
     nextMoveRestriction = 6;
   } else if (index % 10 === 7){
-    console.log("next move must be in sq 7");
     squares[60].id = "highlighted";
     nextMoveRestriction = 7;
   } else if (index % 10 === 8){
-    console.log("next move must be in sq 8");
     squares[70].id = "highlighted";
     nextMoveRestriction = 8;
   } else if (index % 10 === 9){
-    console.log("next move must be in sq 9");
     squares[80].id = "highlighted";
     nextMoveRestriction = 9;
   } else {
@@ -736,6 +752,17 @@ function restrictedTurn(e){
     if (lastIndex < 100) {
       squares[lastIndex].id = "";
     }
+  }
+
+  let nextMoveIndexes = (Number(nextMoveRestriction) - 1) * 10;
+  for (y = nextMoveIndexes; y < nextMoveIndexes + 10; y++) {
+    if (squares[y].textContent === "X" || squares[y].textContent === "O"){
+      counter++;
+    }
+  }
+
+  if (counter === 9) {
+    maxCapacity = true;
   }
 
   lastMoveRestriction = nextMoveRestriction;
