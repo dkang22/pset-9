@@ -111,6 +111,53 @@ function ballWallCollision(){
   }
 }
 
+//BALL & PADDLE collision detection
+function ballPaddleCollision(){
+  if (
+    ball.x < paddle.x + paddle.width &&
+    ball.x > paddle.x &&
+    paddle.y < paddle.y + paddle.height &&
+    ball.y > paddle.y
+  ){
+    let collidePoint = ball.x - (paddle.x + paddle.width/2);
+    collidePoint = collidePoint / (paddle.width/2);
+    let angle = collidePoint * Math.PI/3;
+
+    ball.dx = -ball.speed * Math.sin(angle);
+    ball.dy = -ball.speed * Math.cos(angle);
+  }
+}
+
+//CREATE BRICKS
+const brick = {
+  row : 3,
+  column : 5,
+  width : 55,
+  height : 20,
+  offSetLeft : 20,
+  offSetTop : 20,
+  marginTop : 40,
+  fillColor : "#2e3548",
+  strokeColor : "#FFF"
+}
+
+let bricks = [];
+
+function createBricks(){
+  for(r = 0; r < brick.row; r++){
+    bricks[r] = [];
+    for(c = 0; c < brick.column; c++){
+      bricks[r][c] = {
+        x : c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
+        y : r * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
+        status : true
+      }
+    }
+  }
+}
+
+createBricks();
+
 //RESET the ball
 function resetBall(){
   ball.x = canvas.width/2;
@@ -131,6 +178,7 @@ function update(){
   movePaddle();
   moveBall();
   ballWallCollision();
+  ballPaddleCollision();
 }
 
 //GAME LOOP
