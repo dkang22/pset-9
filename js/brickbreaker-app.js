@@ -16,7 +16,7 @@ const BALL_RADIUS = 8;
 let gameOver = false;
 let leftArrow = false;
 let rightArrow = false;
-let heart = 0;
+let heart = 3;
 let score = 0;
 let scoreIncrement = 10;
 let level = 1;
@@ -43,23 +43,6 @@ HEART_IMG.src = "images/heart.png";
 
 const SCORE_IMG = new Image();
 SCORE_IMG.src = "images/score.png";
-
-//CONTROL PADDLE
-document.addEventListener("keydown", function(event){
-  if(event.keyCode === 37) {
-    leftArrow = true;
-  } else if (event.keyCode === 39) {
-    rightArrow = true;
-  } else {}
-})
-
-document.addEventListener("keyup", function(event){
-  if(event.keyCode === 37) {
-    leftArrow = false;
-  } else if (event.keyCode === 39) {
-    rightArrow = false;
-  } else {}
-})
 
 //DISPLAY GAME OVER MESSAGE
 const over = document.getElementById("gameover");
@@ -239,6 +222,30 @@ function displayGameStats(text, textX, textY, img, imgX, imgY){
   ctx.drawImage(img, imgX, imgY, width = 25, width = 25)
 }
 
+//CONTROL PADDLE
+document.addEventListener("keydown", function(event){
+  if(event.keyCode === 37) {
+    leftArrow = true;
+  } else if (event.keyCode === 39) {
+    rightArrow = true;
+  } else {}
+})
+
+document.addEventListener("keyup", function(event){
+  if(event.keyCode === 37) {
+    leftArrow = false;
+  } else if (event.keyCode === 39) {
+    rightArrow = false;
+  } else {}
+})
+/* FIX MOUSE FUNCTIONING
+document.addEventListener("mousemove", function(event){
+  var relativeX = event.clientX - canvas.offsetLeft;
+  if(relativeX > 0 && relativeX < canvas.width) {
+    leftArrow = true;
+  }
+});
+*/
 //DRAW functions
 function draw(){
   drawPaddle();
