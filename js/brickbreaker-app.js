@@ -18,6 +18,8 @@ let rightArrow = false;
 let life = 3;
 let score = 0;
 let scoreIncrement = 10;
+let level = 1;
+let maxLevel = 3;
 
 //PADDLE
 const paddle = {
@@ -28,9 +30,18 @@ const paddle = {
   dx : 5
 }
 
-//LOAD BACKGROUND IMAGE
-const backgroundImage = new Image();
-backgroundImage.src = "images/brickbreakerbackground.png";
+//LOAD IMAGES
+const BACKGROUND_IMG = new Image();
+BACKGROUND_IMG.src = "images/brickbreakerbackground.png";
+
+const LEVEL_IMG = new Image();
+LEVEL_IMG.src = "images/level.png";
+
+const HEART_IMG = new Image();
+HEART_IMG.src = "images/heart.png";
+
+const SCORE_IMG = new Image();
+SCORE_IMG.src = "images/score.png";
 
 //CONTROL PADDLE
 document.addEventListener("keydown", function(event){
@@ -204,11 +215,22 @@ function moveBall(){
   ball.y += ball.dy;
 }
 
+//DISPLAY GAME STATS
+function displayGameStats(text, textX, textY, img, imgX, imgY){
+  ctx.fillStyle = "#FFF";
+  ctx.font = "25px Germania One";
+  ctx.fillText(text, textX, textY);
+  ctx.drawImage(img, imgX, imgY, width = 25, width = 25)
+}
+
 //DRAW functions
 function draw(){
   drawPaddle();
   drawBall();
   drawBricks();
+  displayGameStats(SCORE, 35, 25, SCORE_IMG, 5, 5);
+  displayGameStats(LEVEL, canvas.width/2, 25, LEVEL_IMG, canvas.width/2 - 30, 5);
+  displayGameStats(HEART, canvas.width - 25, 25, HEART_IMG, canvas.width-55, 5);
 }
 
 //UPDATE GAME FUNCTION
@@ -223,7 +245,7 @@ function update(){
 //GAME LOOP
 function loop(){
   //CLEAR THE canvas
-  ctx.drawImage(backgroundImage, 0, 0);
+  ctx.drawImage(BACKGROUND_IMG, 0, 0);
 
   draw();
   update();
