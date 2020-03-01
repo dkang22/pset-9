@@ -64,7 +64,7 @@ const ball = {
   x : canvas.width/2,
   y: paddle.y - BALL_RADIUS,
   radius : BALL_RADIUS,
-  speed : 4,
+  speed : 5,
   dx : 3 * (Math.random() * 2 - 1),
   dy : -3
 }
@@ -288,7 +288,7 @@ function levelUp(){
 
     brick.row++;
     createBricks();
-    ball.speed += 1.5;
+    ball.speed += 1.75;
     resetBall();
     level++;
   }
