@@ -1,35 +1,21 @@
 //CANVAS ELEMENTS
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
-
-//CANVAS BORDER
-canvas.style.border = "1px solid #000000";
-
-//MAKE PADDLE BORDER THICKER
 ctx.lineWidth = 3;
 
 //GAME VARIABLES & CONSTANTS
 const PADDLE_WIDTH = 100;
-const PADDLE_MARGIN_BOTTOM = 50;
+const PADDLE_MARGIN_BOTTOM = 36;
 const PADDLE_HEIGHT = 20;
 const BALL_RADIUS = 8;
 let gameOver = false;
 let leftArrow = false;
 let rightArrow = false;
-let heart = 0;
+let heart = 3;
 let score = 0;
 let scoreIncrement = 10;
 let level = 1;
 let maxLevel = 3;
-
-//PADDLE
-const paddle = {
-  x : canvas.width/2 - PADDLE_WIDTH/2,
-  y : canvas.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT,
-  width : PADDLE_WIDTH,
-  height : PADDLE_HEIGHT,
-  dx : 5
-}
 
 //LOAD IMAGES
 const BACKGROUND_IMG = new Image();
@@ -57,6 +43,15 @@ function displayEnd(){
   over.style.display = "inline";
   endImage.style.diplay = "inline";
   canvas.style.display = "none";
+}
+
+//PADDLE
+const paddle = {
+  x : canvas.width/2 - PADDLE_WIDTH/2,
+  y : canvas.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT,
+  width : PADDLE_WIDTH,
+  height : PADDLE_HEIGHT,
+  dx : 5
 }
 
 //CREATE THE BALL
@@ -307,7 +302,6 @@ function update(){
 
 //GAME LOOP
 function loop(){
-  //CLEAR THE canvas
   ctx.drawImage(BACKGROUND_IMG, 0, 0);
 
   draw();

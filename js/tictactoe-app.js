@@ -51,7 +51,6 @@ function init() {
   } while (initialPlayer !== "X" && initialPlayer !== "x" && initialPlayer !== "O" && initialPlayer !== "o");
 
   win = null;
-
   render();
 }
 

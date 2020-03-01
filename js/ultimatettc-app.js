@@ -178,7 +178,7 @@ function init() {
   localWinner8 = "";
   localWinner9 = "";
   counter = 0;
-  board = [  ];
+  board = [];
 
   for (x = 0; x < 90; x++) {
     if (x % 10 === 0) {
@@ -674,7 +674,7 @@ function getOverallWinner(){
     (localWin3 === "O" && localWin5 === "O" && localWin7 === "O")
   ) {
     overallWin = "O";
-    console.log(overallWin + " is the OVERALL WINNER");
+    console.log(overallWin + " is the ultimate winner!");
     win = true;
     winner = "O";
     scoreO++;
@@ -744,7 +744,6 @@ function restrictedTurn(e){
     nextMoveRestriction = 9;
   } else {
   }
-
 
   if (lastMoveRestriction !== nextMoveRestriction) {
     let lastBox = Number(lastMoveRestriction);

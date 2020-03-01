@@ -20,6 +20,16 @@ body {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
+footer {
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: lighter;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
 a {
   text-decoration: none;
   color: #FEFEFE;
