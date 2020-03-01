@@ -238,14 +238,14 @@ document.addEventListener("keyup", function(event){
     rightArrow = false;
   } else {}
 })
-/* FIX MOUSE FUNCTIONING
-document.addEventListener("mousemove", function(event){
-  var relativeX = event.clientX - canvas.offsetLeft;
-  if(relativeX > 0 && relativeX < canvas.width) {
-    leftArrow = true;
-  }
-});
-*/
+
+document.addEventListener("mousemove", mouseMoveHandler, false);
+var xDirection = "";
+var oldX = paddle.x;
+function mouseMoveHandler(e){
+  paddle.x = e.pageX - 135;
+}
+
 //DRAW functions
 function draw(){
   drawPaddle();
