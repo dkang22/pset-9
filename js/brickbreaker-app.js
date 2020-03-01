@@ -103,6 +103,12 @@ function movePaddle(){
   } else if (leftArrow){
     paddle.x -= paddle.dx;
   } else {}
+
+  if(paddle.x < 0){
+    paddle.x = 0;
+  } else if (paddle.x > 300){
+    paddle.x = 300;
+  } else {}
 }
 
 //DRAW the ball
