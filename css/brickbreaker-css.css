@@ -27,7 +27,9 @@ a {
 
 canvas {
   margin-bottom: 10px;
+  cursor: none;
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -37,7 +39,7 @@ canvas {
 
 #gameover {
   width: 400px;
-  height: 500px;
+  height: 600px;
   background: rgba(0,0,0,0,0.5);
   display: none;
 }
@@ -46,17 +48,18 @@ canvas {
   font-family: 'Acme', sans-serif;
   top: 250px;
   cursor: pointer;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 30%;
+  margin-right: 30%;
   font-size: 2em;
   color: black;
   background: white;
+  margin-bottom: 15px;
 }
 
 #endImage {
-  top: 200px;
-  width: 40%;
-  height: 40%;
+  top: 150px;
+  width: 30%;
+  height: 30%;
   padding-top: 30px;
   padding-bottom: 5px;
 }

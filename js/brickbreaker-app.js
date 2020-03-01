@@ -16,7 +16,7 @@ const BALL_RADIUS = 8;
 let gameOver = false;
 let leftArrow = false;
 let rightArrow = false;
-let heart = 3;
+let heart = 0;
 let score = 0;
 let scoreIncrement = 10;
 let level = 1;
@@ -249,7 +249,7 @@ document.addEventListener("mousemove", mouseMoveHandler, false);
 var xDirection = "";
 var oldX = paddle.x;
 function mouseMoveHandler(e){
-  paddle.x = e.pageX - 135;
+  paddle.x = e.pageX - 550;
 }
 
 //DRAW functions
@@ -319,5 +319,3 @@ function loop(){
 }
 
 loop();
-
-//NEED TO ADD MOUSE FUNCTIONING
